@@ -1,4 +1,7 @@
 {
+    "beberlei/assert": {
+        "version": "v3.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -32,6 +35,43 @@
     "facebook/webdriver": {
         "version": "1.6.0"
     },
+    "marc-mabe/php-enum": {
+        "version": "v3.1.1"
+    },
+    "prooph/common": {
+        "version": "v4.3.0"
+    },
+    "prooph/event-store": {
+        "version": "v7.5.1"
+    },
+    "prooph/event-store-symfony-bundle": {
+        "version": "0.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.4",
+            "ref": "54606aa996190da9a01cd533ad66a14a37d9b92b"
+        },
+        "files": [
+            "config/packages/prooph_event_store.yaml",
+            "src/Command/CreateEventStreamCommand.php"
+        ]
+    },
+    "prooph/service-bus": {
+        "version": "v6.2.2"
+    },
+    "prooph/service-bus-symfony-bundle": {
+        "version": "0.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.6",
+            "ref": "ba474153d2fa28a44e91cbe27fddf1c0f572988c"
+        },
+        "files": [
+            "config/packages/prooph_service_bus.yaml"
+        ]
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -43,6 +83,9 @@
     },
     "psr/simple-cache": {
         "version": "1.0.1"
+    },
+    "ramsey/uuid": {
+        "version": "3.8.0"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
