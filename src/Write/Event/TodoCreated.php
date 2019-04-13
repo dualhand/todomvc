@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Write\Event;
 
-use App\Model\Event\TodoId;
+use App\Write\Model\TodoId;
 use App\Write\Model\TodoDescription;
 use Prooph\EventSourcing\AggregateChanged;
 

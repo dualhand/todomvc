@@ -1,9 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Write\Model;
 
-use App\Model\Event\TodoId;
 use App\Write\Event\TodoCreated;
 use Prooph\EventSourcing\AggregateChanged;
 use Prooph\EventSourcing\AggregateRoot;
@@ -12,14 +12,17 @@ final class Todo extends AggregateRoot
 {
     /** @var TodoId */
     private $id;
+
     /** @var TodoDescription */
     private $description;
 
-    public static function create(TodoId $todoId, string $description)
+    public static function create(TodoId $todoId, string $description): self
     {
         $self = new self();
 
         $self->recordThat(TodoCreated::occur($todoId->toString(), ['description' => $description]));
+
+        return $self;
     }
 
     protected function aggregateId(): string
@@ -31,9 +34,9 @@ final class Todo extends AggregateRoot
     {
         switch ($event->messageName()) {
             case TodoCreated::class:
-                /** @var TodoCreated $event */
+                /* @var TodoCreated $event */
 
-                $this->id = $event->aggregateId();
+                $this->id = $event->todoId();
                 $this->description = $event->description();
                 break;
         }

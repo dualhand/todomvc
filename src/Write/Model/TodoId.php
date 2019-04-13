@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Model\Event;
+namespace App\Write\Model;
 
 final class TodoId
 {
