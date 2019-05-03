@@ -2,6 +2,15 @@ prooph_event_store:
     stores:
         default:
             event_store: 'app.event_store.default'
+    projection_managers:
+        default:
+            event_store: 'app.event_store.default'
+            projections:
+                todo:
+                    read_model: App\Read\Model\TodoReadModel
+                    projection: App\Read\Projector\TodoProjector
+
+
 
 services:
     _defaults:

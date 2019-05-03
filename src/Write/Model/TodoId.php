@@ -30,4 +30,9 @@ final class TodoId
 
         return $this->uuid === $other->uuid;
     }
+
+    public function __toString()
+    {
+        return $this->toString();
+    }
 }
