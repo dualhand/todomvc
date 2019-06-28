@@ -18,6 +18,12 @@ class Todo
     private $todoId;
 
     /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $description;
+
+    /**
      * @return TodoId
      */
     public function getTodoId(): TodoId
@@ -36,4 +42,25 @@ class Todo
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     *
+     * @return Todo
+     */
+    public function setDescription(string $description): Todo
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 }

@@ -47,7 +47,9 @@ class TodoReadModel extends AbstractReadModel
     public function insert(array $data)
     {
         $todo = new Todo();
-        $todo->setTodoId($data['id']);
+        $todo
+            ->setTodoId($data['id'])
+            ->setDescription($data['description']);
 
         $this->entityManager->persist($todo);
         $this->entityManager->flush($todo);

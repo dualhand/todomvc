@@ -16,12 +16,19 @@ class TodoProjector implements ReadModelProjection
 
         $projector
             ->fromAll()
-            ->when([
-                TodoCreated::class => function ($state, TodoCreated $event) use ($readModel) {
-                    $readModel->stack('insert', ['id' => $event->todoId()]);
-                },
-            ])
-        ;
+            ->when(
+                [
+                    TodoCreated::class => function ($state, TodoCreated $event) use ($readModel) {
+                        $readModel->stack(
+                            'insert',
+                            [
+                                'id' => $event->todoId(),
+                                'description' => $event->description()->toString(),
+                            ]
+                        );
+                    },
+                ]
+            );
 
         return $projector;
     }
