@@ -31,3 +31,8 @@ services:
             - { name: 'prooph_service_bus.default_command_bus.route_target', message_detection: true }
 
     Prooph\EventStore\EventStore: '@in_memory_event_store'
+
+    App\Read\Handler\:
+        resource: '../src/Read/Handler'
+        tags:
+            - { name: 'prooph_service_bus.default_query_bus.route_target', message_detection: true }

@@ -44,6 +44,11 @@ class TodoReadModel extends AbstractReadModel
         // TODO: Implement delete() method.
     }
 
+    public function getAll()
+    {
+        return $this->entityManager->getRepository(Todo::class)->findAll();
+    }
+
     public function insert(array $data)
     {
         $todo = new Todo();
