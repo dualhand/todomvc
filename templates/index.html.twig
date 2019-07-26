@@ -25,7 +25,7 @@
 							<div class="view">
 								<input class="toggle" type="checkbox">
 								<label>{{ todo.description }}</label>
-								<button class="destroy"></button>
+								<a class="destroy" href="{{ url('remove', {'id': todo.todoId.toString()}) }}"></a>
 							</div>
 							<input class="edit" value="Rule the web">
 						</li>

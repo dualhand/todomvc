@@ -3,6 +3,7 @@
 namespace App\Write\Infrastructure;
 
 use App\Write\Model\Todo;
+use App\Write\Model\TodoId;
 use App\Write\Model\TodoRepository;
 use Prooph\EventSourcing\Aggregate\AggregateRepository;
 use Prooph\EventSourcing\Aggregate\AggregateType;
@@ -33,5 +34,10 @@ class ProophTodoRepository extends AggregateRepository implements TodoRepository
     public function save(Todo $todo): void
     {
         $this->saveAggregateRoot($todo);
+    }
+
+    public function get(TodoId $id): Todo
+    {
+        return $this->getAggregateRoot($id);
     }
 }

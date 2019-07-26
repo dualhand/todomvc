@@ -23,4 +23,4 @@ services:
 #        class: Prooph\EventStore\InMemoryEventStore
 
 #    app.event_store.default: "@in_memory_event_store"
-    
+

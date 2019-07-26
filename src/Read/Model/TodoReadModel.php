@@ -59,4 +59,16 @@ class TodoReadModel extends AbstractReadModel
         $this->entityManager->persist($todo);
         $this->entityManager->flush($todo);
     }
+
+    public function remove(array $data)
+    {
+        $todo = $this->entityManager->getRepository(Todo::class)->find($data['id']);
+
+        if (!$todo) {
+            return;
+        }
+
+        $this->entityManager->remove($todo);
+        $this->entityManager->flush();
+    }
 }
