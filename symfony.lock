@@ -121,6 +121,18 @@
             "src/Command/CreateEventStreamCommand.php"
         ]
     },
+    "prooph/pdo-event-store": {
+        "version": "1.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.7",
+            "ref": "88c30218d5ef74ede65ae40fc8e4ec9558ec2b65"
+        },
+        "files": [
+            "config/packages/prooph_pdo_event_store.yaml"
+        ]
+    },
     "prooph/service-bus": {
         "version": "v6.2.2"
     },
