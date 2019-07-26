@@ -9,9 +9,10 @@ use Prooph\EventStore\EventStore;
 use Prooph\ServiceBus\CommandBus;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @Route(path="/create", name="create")
+ * @Route(path="/create", name="create", methods={"POST"})
  */
 class CreateAction extends AbstractController
 {
@@ -35,12 +36,12 @@ class CreateAction extends AbstractController
         $this->eventStore = $eventStore;
     }
 
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $command = CreateTodo::withDescription('New todo dualhand!');
+        $command = CreateTodo::withDescription($request->request->get('description'));
 
         $this->bus->dispatch($command);
 
-        return $this->render('index.html.twig');
+        return $this->redirectToRoute('list');
     }
 }

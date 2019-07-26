@@ -7,12 +7,11 @@ use Prooph\ServiceBus\QueryBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 
 /**
- * @Route("/", name="list")
+ * @Route("/api/list", name="api_list")
  */
-class ListAction extends AbstractController
+class ApiListAction extends AbstractController
 {
     public function __invoke(QueryBus $bus)
     {
@@ -24,6 +23,6 @@ class ListAction extends AbstractController
             $result = $kk;
         });
 
-        return $this->render('index.html.twig', ['todos' => $result]);
+        return new Response();
     }
 }

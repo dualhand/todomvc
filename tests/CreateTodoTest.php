@@ -10,7 +10,7 @@ class CreateTodoTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', '/create');
+        $client->request('POST', '/create', ['description' => 'santi es el puto amo!']);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
