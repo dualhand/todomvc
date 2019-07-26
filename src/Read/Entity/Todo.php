@@ -24,6 +24,12 @@ class Todo
     private $description;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", options={"default"=false})
+     */
+    private $completed = false;
+
+    /**
      * @return TodoId
      */
     public function getTodoId(): TodoId
@@ -62,5 +68,28 @@ class Todo
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isCompleted(): bool
+    {
+        return $this->completed;
+    }
+
+    /**
+     * @param bool $completed
+     *
+     * @return Todo
+     */
+    public function setCompleted(bool $completed): Todo
+    {
+        $this->completed = $completed;
+
+        return $this;
+    }
+
+
+
 
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Write\Model;
 
+use App\Write\Event\TodoCompleted;
 use App\Write\Event\TodoCreated;
 use App\Write\Event\TodoRemoved;
 use Prooph\EventSourcing\AggregateChanged;
@@ -20,6 +21,9 @@ final class Todo extends AggregateRoot
     /** @var boolean */
     private $removed;
 
+    /** @var boolean */
+    private $completed;
+
     public static function create(TodoId $todoId, string $description): self
     {
         $self = new self();
@@ -32,6 +36,11 @@ final class Todo extends AggregateRoot
     public function remove(): void
     {
         $this->recordThat(TodoRemoved::occur($this->id->toString()));
+    }
+
+    public function complete()
+    {
+        $this->recordThat(TodoCompleted::occur($this->id->toString()));
     }
 
     protected function aggregateId(): string
@@ -48,9 +57,13 @@ final class Todo extends AggregateRoot
                 $this->id = $event->todoId();
                 $this->description = $event->description();
                 $this->removed = false;
+                $this->completed = false;
                 break;
             case TodoRemoved::class:
                 $this->removed = true;
+                break;
+            case TodoCompleted::class:
+                $this->completed = true;
                 break;
         }
     }

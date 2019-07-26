@@ -21,9 +21,9 @@
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
 					{% for todo in todos %}
-						<li>
+						<li {% if todo.isCompleted %}class="completed" {% endif %}>
 							<div class="view">
-								<input class="toggle" type="checkbox">
+								<input class="toggle" type="checkbox" {% if todo.isCompleted %}checked{% endif %} onclick="location.href='{{ url('complete', {'id': todo.todoId.toString()}) }}'">
 								<label>{{ todo.description }}</label>
 								<a class="destroy" href="{{ url('remove', {'id': todo.todoId.toString()}) }}"></a>
 							</div>

@@ -4,6 +4,7 @@ namespace App\Read\Projector;
 
 use App\Read\Model\TodoReadModel;
 use App\Write\Command\RemoveTodo;
+use App\Write\Event\TodoCompleted;
 use App\Write\Event\TodoCreated;
 use App\Write\Event\TodoRemoved;
 use Prooph\Bundle\EventStore\Projection\ReadModelProjection;
@@ -32,6 +33,14 @@ class TodoProjector implements ReadModelProjection
                     TodoRemoved::class => function ($state, TodoRemoved $event) use ($readModel) {
                         $readModel->stack(
                             'remove',
+                            [
+                                'id' => $event->todoId(),
+                            ]
+                        );
+                    },
+                    TodoCompleted::class => function ($state, TodoCompleted $event) use ($readModel) {
+                        $readModel->stack(
+                            'complete',
                             [
                                 'id' => $event->todoId(),
                             ]

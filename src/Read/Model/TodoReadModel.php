@@ -54,7 +54,8 @@ class TodoReadModel extends AbstractReadModel
         $todo = new Todo();
         $todo
             ->setTodoId($data['id'])
-            ->setDescription($data['description']);
+            ->setDescription($data['description'])
+            ->setCompleted(false);
 
         $this->entityManager->persist($todo);
         $this->entityManager->flush($todo);
@@ -69,6 +70,20 @@ class TodoReadModel extends AbstractReadModel
         }
 
         $this->entityManager->remove($todo);
+        $this->entityManager->flush();
+    }
+
+    public function complete(array $data)
+    {
+        $todo = $this->entityManager->getRepository(Todo::class)->find($data['id']);
+
+        if (!$todo) {
+            return;
+        }
+
+        $todo->setCompleted(true);
+
+        $this->entityManager->persist($todo);
         $this->entityManager->flush();
     }
 }
