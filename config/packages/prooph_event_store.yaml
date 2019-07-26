@@ -5,6 +5,7 @@ prooph_event_store:
     projection_managers:
         default:
             event_store: 'app.event_store.default'
+            connection: 'app.event_store.pdo_connection.mysql'
             projections:
                 todo:
                     read_model: App\Read\Model\TodoReadModel
@@ -18,7 +19,8 @@ services:
 
     Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator: ~
 
-    in_memory_event_store:
-        class: Prooph\EventStore\InMemoryEventStore
+#    in_memory_event_store:
+#        class: Prooph\EventStore\InMemoryEventStore
 
-    app.event_store.default: "@in_memory_event_store"
+#    app.event_store.default: "@in_memory_event_store"
+    

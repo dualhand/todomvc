@@ -15,7 +15,7 @@ class TodoProjector implements ReadModelProjection
         $readModel = $projector->readModel();
 
         $projector
-            ->fromAll()
+            ->fromStream('todo_event_stream')
             ->when(
                 [
                     TodoCreated::class => function ($state, TodoCreated $event) use ($readModel) {

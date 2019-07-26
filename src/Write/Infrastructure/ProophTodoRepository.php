@@ -8,6 +8,7 @@ use Prooph\EventSourcing\Aggregate\AggregateRepository;
 use Prooph\EventSourcing\Aggregate\AggregateType;
 use Prooph\EventSourcing\EventStoreIntegration\AggregateTranslator;
 use Prooph\EventStore\EventStore;
+use Prooph\EventStore\StreamName;
 
 class ProophTodoRepository extends AggregateRepository implements TodoRepository
 {
@@ -23,8 +24,8 @@ class ProophTodoRepository extends AggregateRepository implements TodoRepository
             AggregateType::fromAggregateRootClass(Todo::class),
             new AggregateTranslator(),
             null,
-            null,
-            true,
+            new StreamName('todo_event_stream'),
+            false,
             false
         );
     }
