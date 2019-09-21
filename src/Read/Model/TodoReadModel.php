@@ -63,7 +63,7 @@ class TodoReadModel extends AbstractReadModel
 
     public function remove(array $data)
     {
-        $todo = $this->entityManager->getRepository(Todo::class)->find($data['id']);
+        $todo = $this->getRepository()->find($data['id']);
 
         if (!$todo) {
             return;
@@ -75,7 +75,7 @@ class TodoReadModel extends AbstractReadModel
 
     public function complete(array $data)
     {
-        $todo = $this->entityManager->getRepository(Todo::class)->find($data['id']);
+        $todo = $this->getRepository()->find($data['id']);
 
         if (!$todo) {
             return;
@@ -85,5 +85,18 @@ class TodoReadModel extends AbstractReadModel
 
         $this->entityManager->persist($todo);
         $this->entityManager->flush();
+    }
+
+    public function getAllActive()
+    {
+        return $this->getRepository()->findBy(['completed' => false]);
+    }
+
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository|\Doctrine\ORM\EntityRepository
+     */
+    private function getRepository()
+    {
+        return $this->entityManager->getRepository(Todo::class);
     }
 }
