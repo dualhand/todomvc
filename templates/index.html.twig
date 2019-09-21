@@ -23,8 +23,13 @@
 					{% for todo in todos %}
 						<li {% if todo.isCompleted %}class="completed" {% endif %}>
 							<div class="view">
-								<input class="toggle" type="checkbox" {% if todo.isCompleted %}checked{% endif %} onclick="location.href='{{ url('complete', {'id': todo.todoId.toString()}) }}'">
+								{% if todo.isCompleted %}
+								<input class="toggle" type="checkbox" checked onclick="location.href='{{ url('incomplete', {'id': todo.todoId.toString()}) }}'">
+								{% else %}
+								<input class="toggle" type="checkbox" onclick="location.href='{{ url('complete', {'id': todo.todoId.toString()}) }}'">
+								{% endif %}
 								<label>{{ todo.description }}</label>
+
 								<a class="destroy" href="{{ url('remove', {'id': todo.todoId.toString()}) }}"></a>
 							</div>
 							<input class="edit" value="Rule the web">

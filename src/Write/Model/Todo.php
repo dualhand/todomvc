@@ -6,6 +6,7 @@ namespace App\Write\Model;
 
 use App\Write\Event\TodoCompleted;
 use App\Write\Event\TodoCreated;
+use App\Write\Event\TodoIncompleted;
 use App\Write\Event\TodoRemoved;
 use Prooph\EventSourcing\AggregateChanged;
 use Prooph\EventSourcing\AggregateRoot;
@@ -41,6 +42,11 @@ final class Todo extends AggregateRoot
     public function complete()
     {
         $this->recordThat(TodoCompleted::occur($this->id->toString()));
+    }
+
+    public function incomplete()
+    {
+        $this->recordThat(TodoIncompleted::occur($this->id->toString()));
     }
 
     protected function aggregateId(): string

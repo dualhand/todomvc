@@ -87,6 +87,21 @@ class TodoReadModel extends AbstractReadModel
         $this->entityManager->flush();
     }
 
+    public function incomplete(array $data)
+    {
+        /** @var Todo $todo */
+        $todo = $this->getRepository()->find($data['id']);
+
+        if (!$todo) {
+            return;
+        }
+
+        $todo->setCompleted(false);
+
+        $this->entityManager->persist($todo);
+        $this->entityManager->flush();
+    }
+
     public function getAllActive()
     {
         return $this->getRepository()->findBy(['completed' => false]);
