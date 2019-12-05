@@ -26,3 +26,6 @@ bin/console server:run
 
 Go to http://127.0.0.1:8000/
 
+TODO:
+
+- use an async bus (command and event) https://github.com/prooph/psb-zeromq-producer/blob/master/README.md#usage-examples
