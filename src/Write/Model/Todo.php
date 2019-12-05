@@ -71,6 +71,9 @@ final class Todo extends AggregateRoot
             case TodoCompleted::class:
                 $this->completed = true;
                 break;
+            case TodoIncompleted::class:
+                $this->completed = false;
+                break;
         }
     }
 }

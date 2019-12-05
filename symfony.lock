@@ -133,6 +133,9 @@
             "config/packages/prooph_pdo_event_store.yaml"
         ]
     },
+    "prooph/pdo-snapshot-store": {
+        "version": "v1.5.2"
+    },
     "prooph/service-bus": {
         "version": "v6.2.2"
     },
@@ -147,6 +150,12 @@
         "files": [
             "config/packages/prooph_service_bus.yaml"
         ]
+    },
+    "prooph/snapshot-store": {
+        "version": "v1.3.0"
+    },
+    "prooph/snapshotter": {
+        "version": "v2.1.0"
     },
     "psr/cache": {
         "version": "1.0.1"

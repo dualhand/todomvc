@@ -36,3 +36,15 @@ services:
         resource: '../src/Read/Handler'
         tags:
             - { name: 'prooph_service_bus.default_query_bus.route_target', message_detection: true }
+
+    App\Write\Infrastructure\ProophTodoRepository:
+        class: App\Write\Infrastructure\ProophTodoRepository
+        arguments: ['@app.event_store.default', '@Prooph\SnapshotStore\SnapshotStore']
+
+    pdo_snapshot_store:
+        class: Prooph\SnapshotStore\Pdo\PdoSnapshotStore
+        arguments: ['@app.event_store.pdo_connection.mysql']
+
+    Prooph\SnapshotStore\SnapshotStore: '@pdo_snapshot_store'
+
+    Prooph\EventStore\Projection\ProjectionManager: '@prooph_event_store.projection_manager.default'
